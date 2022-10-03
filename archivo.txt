@@ -1,0 +1,16 @@
+ int fila = tbllibro.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
+        } else {
+            int idlibro = Integer.parseInt(tbllibro.getValueAt(fila, 0).toString());
+            String autor = tbllibro.getValueAt(fila, 1).toString();
+            String titulo = tbllibro.getValueAt(fila, 2).toString();
+            int cantidad = Integer.parseInt(tbllibro.getValueAt(fila, 3).toString());
+            int estado = Integer.parseInt(tbllibro.getValueAt(fila, 4).toString());
+
+            lblid.setText(String.valueOf(idlibro).toString());
+            txtautor.setText(autor);
+            txttitulo.setText(titulo);
+            txtcantidad.setText(String.valueOf(cantidad));
+
+        }

@@ -1,0 +1,29 @@
+create database biblioteca;
+use biblioteca;
+
+drop database biblioteca;
+create table libro(
+idlibro int auto_increment not null primary key,
+autor varchar(70),
+titulo varchar(70),
+cantidad int,
+estado tinyint
+);
+
+/*consultas*/
+select * from libro;
+select autor from libro;
+select autor,titulo from libro;
+
+/*CRUD*/
+/*Insertar*/
+insert into libro(autor,titulo,cantidad,estado) values('Alberto','Matematicas',20,1);
+insert into libro(autor,titulo,cantidad,estado) values('Santiago','Cuentos infantiles',45,1);
+insert into libro(autor,titulo,cantidad,estado) values('Andres','Lenguaje',32,1);
+insert into libro(autor,titulo,cantidad,estado) values('Juan','Sociales',15,1);
+/*actualizar*/
+update libro set titulo ='lenguaje' where idlibro=1;
+update libro set titulo ='dias pasados',autor='Miguel' where idlibro=2;
+update libro set estado =0,titulo='amigos' where idlibro=1;
+/*eliminar*/
+delete from libro where idlibro=4;
