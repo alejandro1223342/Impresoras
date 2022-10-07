@@ -95,9 +95,6 @@
           </Border>
         </Property>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Datos Impresora"/>
-      </AccessibilityProperties>
 
       <Layout>
         <DimensionLayout dim="0">

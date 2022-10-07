@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -24,41 +25,37 @@ public class frmImpresoras extends javax.swing.JFrame {
         cImpresora = new controllerImpresora();
         modelo = (DefaultTableModel) tblimpresora.getModel();
         listar();
-        
+
         Marca marca = new Marca();
         DefaultComboBoxModel modeloMarca = new DefaultComboBoxModel(marca.mostrarMarca());
         cbomarca.setModel(modeloMarca);
-        
+
         Area area = new Area();
         DefaultComboBoxModel modeloArea = new DefaultComboBoxModel(area.mostrarArea());
         cboarea.setModel(modeloArea);
-        
+
         TipoImpresora tipo = new TipoImpresora();
         DefaultComboBoxModel modeloTipo = new DefaultComboBoxModel(tipo.mostrarTipo());
         cbotipoimpresora.setModel(modeloTipo);
-        
-      
-        
 
     }
 
     public void listar() {
         ArrayList<Impresora> listaImpresora = new ArrayList<>();
         listaImpresora = cImpresora.consulta();
-        System.out.println("tamanio lista: "+listaImpresora.size());
+        System.out.println("tamanio lista: " + listaImpresora.size());
         Object ob[] = new Object[7];
         for (int i = 0; i < listaImpresora.size(); i++) {
-           
-                ob[0] = listaImpresora.get(i).getId_impresora();
-                ob[1] = listaImpresora.get(i).getNumero_serie();
-                ob[2] = listaImpresora.get(i).getId_marca_impresora();
-                ob[3] = listaImpresora.get(i).getId_area();
-                ob[4] = listaImpresora.get(i).getId_tipo_impresora();
-                ob[5] = listaImpresora.get(i).getBandera();
-                ob[6] = listaImpresora.get(i).getDescripcion_imp();
-                //ob[4] = listaImpresora.get(i).getDescripcion_imp();
-                modelo.addRow(ob);
-            
+
+            ob[0] = listaImpresora.get(i).getId_impresora();
+            ob[1] = listaImpresora.get(i).getNumero_serie();
+            ob[2] = listaImpresora.get(i).getId_marca_impresora();
+            ob[3] = listaImpresora.get(i).getId_area();
+            ob[4] = listaImpresora.get(i).getId_tipo_impresora();
+            ob[5] = listaImpresora.get(i).getBandera();
+            ob[6] = listaImpresora.get(i).getDescripcion_imp();
+            //ob[4] = listaImpresora.get(i).getDescripcion_imp();
+            modelo.addRow(ob);
 
         }
 
@@ -329,17 +326,17 @@ public class frmImpresoras extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btninsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninsertarActionPerformed
-        Marca marca=(Marca) cbomarca.getSelectedItem();
-        Area area=(Area) cboarea.getSelectedItem();
-        TipoImpresora tipo=(TipoImpresora) cbotipoimpresora.getSelectedItem();
-        
+        Marca marca = (Marca) cbomarca.getSelectedItem();
+        Area area = (Area) cboarea.getSelectedItem();
+        TipoImpresora tipo = (TipoImpresora) cbotipoimpresora.getSelectedItem();
+
         String serie = txtserie.getText();
-        String marcacb = String.valueOf(marca.getId_marca_impresora()); 
+        String marcacb = String.valueOf(marca.getId_marca_impresora());
         String areacb = String.valueOf(area.getId_area());
-        String tipoimp= String.valueOf(tipo.getId_tipo_impresora());
+        String tipoimp = String.valueOf(tipo.getId_tipo_impresora());
         //String bandera= txttipoimpre.getText();
         String descripcion = txtdescripcion.getText();
-        
+
         System.out.println("llego aqui_1");
         Impresora imp = new Impresora();
         imp.setNumero_serie(serie);
@@ -357,9 +354,9 @@ public class frmImpresoras extends javax.swing.JFrame {
 
 
     private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
-       Marca marca=(Marca) cbomarca.getSelectedItem();
-        System.out.println("marca id: "+marca.getId_marca_impresora());
-        
+        Marca marca = (Marca) cbomarca.getSelectedItem();
+        System.out.println("marca id: " + marca.getId_marca_impresora());
+
         /* int idimpresora = Integer.parseInt(lblid.getText().toString());
         String serie = txtserie.getText();
         String marca =txtmarca.getText(); 
@@ -386,7 +383,7 @@ public class frmImpresoras extends javax.swing.JFrame {
     }//GEN-LAST:event_btnmodificarActionPerformed
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
-        int id=Integer.parseInt(lblid.getText().toString());
+        int id = Integer.parseInt(lblid.getText().toString());
         cImpresora.eliminar(id);
         limpiarTabla();
         listar();
@@ -404,10 +401,10 @@ public class frmImpresoras extends javax.swing.JFrame {
     }//GEN-LAST:event_btnlimpiarActionPerformed
 
     private void tblimpresoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblimpresoraMouseClicked
-        Marca marca=(Marca) cbomarca.getSelectedItem();
-        Area area=(Area) cboarea.getSelectedItem();
-        TipoImpresora tipo=(TipoImpresora) cbotipoimpresora.getSelectedItem();
-        
+        Marca marca = (Marca) cbomarca.getSelectedItem();
+        Area area = (Area) cboarea.getSelectedItem();
+        TipoImpresora tipo = (TipoImpresora) cbotipoimpresora.getSelectedItem();
+
         int fila = tblimpresora.getSelectedRow();
         if (fila == -1) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
@@ -419,11 +416,13 @@ public class frmImpresoras extends javax.swing.JFrame {
             String tipoimp = tblimpresora.getValueAt(fila, 4).toString();
             String bandera = tblimpresora.getValueAt(fila, 5).toString();
             String descripcion = tblimpresora.getValueAt(fila, 6).toString();
+
+            lblid.setText(String.valueOf(idimpresora).toString());
+            txtserie.setText(serie);
+            txtdescripcion.setText(descripcion);
             
-        lblid.setText(String.valueOf(idimpresora).toString());
-        txtserie.setText(serie);
-        
-        if(marcas.equals("epson")){
+
+            /*if(marcas.equals("epson")){
             cbomarca.setSelectedIndex(1);
         }else{
            cbomarca.setSelectedIndex(2); 
@@ -438,28 +437,56 @@ public class frmImpresoras extends javax.swing.JFrame {
         }else{
             cbotipoimpresora.setSelectedIndex(2);
         }
-        
-        cboarea.setSelectedItem(areas);
-        cbotipoimpresora.setSelectedItem(tipoimp+" - "+bandera);
-        /*txtmarca.setText(marca);
+             */
+            cbomarca.setSelectedItem(marca);
+            cboarea.setSelectedItem(areas);
+            cbotipoimpresora.setSelectedItem(tipoimp + " - " + bandera);
+            /*txtmarca.setText(marca);
         txtarea.setText(area);
         txttipoimp.setText(tipoimp);
         txttipoimpre.setText(bandera);*/
-        txtdescripcion.setText(descripcion);
-          
+            txtdescripcion.setText(descripcion);
 
+            Vector<Marca> vecMarca = new Vector<Marca>();
+
+            vecMarca = marca.mostrarMarca();
+            for (int i = 0; i < cbomarca.getItemCount(); i++) {
+                if (vecMarca.get(i).getEtiqueta().equals(marcas)) {
+                    cbomarca.setSelectedIndex(i);
+                }
+
+            }
+            Vector<Area> vecArea = new Vector<Area>();
+            vecArea = area.mostrarArea();
+            System.out.println("tamanio area: " + cboarea.getSelectedIndex() + "- tamanio vec: " + vecArea.get(0).getEtiqueta());
+            for (int i = 0; i < vecArea.size(); i++) {
+                if (vecArea.get(i).getEtiqueta().equals(areas)) {
+                    System.out.println("posicion area: " + i);
+                    System.out.println("areas: " + areas + "- vector: " + vecArea.get(i).getEtiqueta());
+                    cboarea.setSelectedIndex(i);
+                }
+            }
+
+            Vector<TipoImpresora> vecTipoImp = new Vector<TipoImpresora>();
+            vecTipoImp = tipo.mostrarTipo();
+            for (int i = 0; i < cbotipoimpresora.getItemCount(); i++) {
+                if (vecTipoImp.get(i).getEtiqueta().equals(tipoimp + " - " + bandera)) {
+
+                    cbotipoimpresora.setSelectedIndex(i);
+                }
+            }
         }
+
+
     }//GEN-LAST:event_tblimpresoraMouseClicked
 
     private void cbomarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbomarcaActionPerformed
-            
+
     }//GEN-LAST:event_cbomarcaActionPerformed
 
     private void cboareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboareaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cboareaActionPerformed
-
-   
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
