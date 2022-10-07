@@ -20,7 +20,7 @@ public class controllerImpresiones {
     public void insertar(Impresiones imp) {
 
         try {
-            String sql = "INSERT INTO t_registro (cedula, apellidos, nombres, id_impresora, id_tipoImp, numero_hojas, timestamp, descripcion) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+            String sql = "INTO t_registro (cedula, apellidos, nombres, id_impresora, id_tipoImp, numero_hojas, timestamp, descripcion) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
             acceso = con.conectar();
             System.out.println("conexxion: " + acceso);
             ps = acceso.prepareStatement(sql);
@@ -92,4 +92,42 @@ public class controllerImpresiones {
 
         return listaImpresiones;
     }
+       
+       public void actualizar(Impresiones imp) {
+           
+           try{
+           String sql = "UPDATE t_registro SET id_registro = ?, cedula = ?, apellidos = ?, nombres = ? , id_impresora = ?, id_tipoImp = ?, numero_hojas = ?, timestamp = ?, descripcion = ? WHERE (id_registro = ?);";
+
+           acceso = con.conectar();
+            ps = acceso.prepareStatement(sql);
+            ps.setObject(1, imp.getId_registro());
+            ps.setObject(2, imp.getCedula());
+            ps.setObject(3, imp.getApellidos());
+            ps.setObject(4, imp.getNombres());
+            ps.setObject(5, imp.getId_impresora());
+            ps.setObject(6, imp.getId_tipoImp());
+            ps.setObject(7, imp.getNumero_hojas());
+            ps.setObject(8, imp.getTimestamp());
+            ps.setObject(9, imp.getDescripcion());
+            ps.setObject(10, imp.getId_registro());
+            
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+       
+           public void eliminar(int id) {
+        String sql = "DELETE FROM t_registro WHERE (id_registro = ?)";
+        try {
+            acceso = con.conectar();
+            System.out.println("id="+id);
+            ps = acceso.prepareStatement(sql);
+            ps.setObject(1, id);
+            ps.executeUpdate();
+            System.out.println("eliminacion");
+        } catch (Exception e) {
+        }
+    }
+
 }
+

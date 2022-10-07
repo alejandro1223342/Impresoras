@@ -96,6 +96,8 @@ public class frmImpresoras extends javax.swing.JFrame {
         btnlimpiar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblimpresora = new javax.swing.JTable();
+        btnregistro = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -276,6 +278,20 @@ public class frmImpresoras extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblimpresora);
 
+        btnregistro.setText("Registro General");
+        btnregistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnregistroActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Impresiones");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -296,7 +312,12 @@ public class frmImpresoras extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnlimpiar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnlimpiar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnregistro)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -305,7 +326,9 @@ public class frmImpresoras extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnlimpiar))
+                    .addComponent(btnlimpiar)
+                    .addComponent(btnregistro)
+                    .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -319,8 +342,6 @@ public class frmImpresoras extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
-
-        jPanel1.getAccessibleContext().setAccessibleName("Datos Impresora");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -355,20 +376,22 @@ public class frmImpresoras extends javax.swing.JFrame {
 
     private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
         Marca marca = (Marca) cbomarca.getSelectedItem();
+        Area area = (Area) cboarea.getSelectedItem();
+        TipoImpresora tipo = (TipoImpresora) cbotipoimpresora.getSelectedItem();
         System.out.println("marca id: " + marca.getId_marca_impresora());
 
-        /* int idimpresora = Integer.parseInt(lblid.getText().toString());
+        int idimpresora = Integer.parseInt(lblid.getText().toString());
         String serie = txtserie.getText();
-        String marca =txtmarca.getText(); 
-        String area =txtarea.getText();
-        String tipoimp=txttipoimp.getText();
+        String marcacb = String.valueOf(marca.getId_marca_impresora());
+        String areacb = String.valueOf(area.getId_area());
+        String tipoimp = String.valueOf(tipo.getId_tipo_impresora());
         //String bandera=txttipoimpre.getText();
         String descripcion = txtdescripcion.getText();
 
         Impresora imp = new Impresora();
         imp.setNumero_serie(serie);
-        imp.setId_marca_impresora(marca);
-        imp.setId_area(area);
+        imp.setId_marca_impresora(marcacb);
+        imp.setId_area(areacb);
         imp.setId_tipo_impresora(tipoimp);
         //imp.setBandera(bandera);
         imp.setDescripcion_imp(descripcion);
@@ -379,7 +402,7 @@ public class frmImpresoras extends javax.swing.JFrame {
         
         
         limpiarTabla();
-        listar();*/
+        listar();
     }//GEN-LAST:event_btnmodificarActionPerformed
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
@@ -488,6 +511,18 @@ public class frmImpresoras extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cboareaActionPerformed
 
+    private void btnregistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistroActionPerformed
+        frmRegistro newframe=new frmRegistro();
+            newframe.setVisible(true);
+            this.dispose();;
+    }//GEN-LAST:event_btnregistroActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        frmImpresiones newframe=new frmImpresiones();
+            newframe.setVisible(true);
+            this.dispose();;
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -528,9 +563,11 @@ public class frmImpresoras extends javax.swing.JFrame {
     private javax.swing.JButton btninsertar;
     private javax.swing.JButton btnlimpiar;
     private javax.swing.JButton btnmodificar;
+    private javax.swing.JButton btnregistro;
     private javax.swing.JComboBox<String> cboarea;
     private javax.swing.JComboBox<String> cbomarca;
     private javax.swing.JComboBox<String> cbotipoimpresora;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

@@ -91,6 +91,7 @@ public class frmImpresiones extends javax.swing.JFrame {
         btnlimpiar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbllImpresiones = new javax.swing.JTable();
+        btnimpresora = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -299,6 +300,13 @@ public class frmImpresiones extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbllImpresiones);
 
+        btnimpresora.setText("Impresoras");
+        btnimpresora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnimpresoraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -314,7 +322,10 @@ public class frmImpresiones extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnlimpiar)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnlimpiar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnimpresora, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 736, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -328,7 +339,9 @@ public class frmImpresiones extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnlimpiar))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnlimpiar)
+                        .addComponent(btnimpresora)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -372,25 +385,39 @@ public class frmImpresiones extends javax.swing.JFrame {
 
 
     private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
-        String autor = txtcedula.getText();
-        String titulo = txtapellidos.getText();
-        int cantidad = Integer.parseInt(txtnombres.getText());
-        int idlibro = Integer.parseInt(lblid.getText().toString());
-
-        Libro lib = new Libro();
-        lib.setAutor(autor);
-        lib.setTitulo(titulo);
-        lib.setCantidad(cantidad);
-        lib.setEstado(1);
-        lib.setIsbn(idlibro);
-        clibro.actualizar(lib);
+        TipoImpresiones tipo = (TipoImpresiones) cbotipoimp.getSelectedItem();
+        
+        int idregistro = Integer.parseInt(lblid.getText().toString());
+        String cedula = txtcedula.getText();
+        String apellidos = txtapellidos.getText();
+        String nombres = txtnombres.getText();
+        String idim=txtid.getText();
+        String tipoim = String.valueOf(tipo.getId_tipoImp());
+        String hojas=txtcantidad.getText();
+        String time=txtfecha.getText();
+        String descripcion=txtdescripcion.getText();
+       
+        Impresiones imp = new Impresiones();
+     
+        imp.setCedula(cedula);
+        imp.setApellidos(apellidos);
+        imp.setNombres(nombres);
+        imp.setId_impresora(idim);
+        imp.setId_tipoImp(tipoim);
+        imp.setNumero_hojas(hojas);
+        imp.setTimestamp(time);
+        imp.setDescripcion(descripcion);
+        imp.setId_registro(idregistro);
+        
+       
+        cImpresiones.actualizar(imp);
         limpiarTabla();
         listar();
     }//GEN-LAST:event_btnmodificarActionPerformed
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
         int idlibro = Integer.parseInt(lblid.getText().toString());
-        clibro.eliminar(idlibro);
+        cImpresiones.eliminar(idlibro);
         limpiarTabla();
         listar();
     }//GEN-LAST:event_btneliminarActionPerformed
@@ -452,6 +479,12 @@ public class frmImpresiones extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtapellidosActionPerformed
 
+    private void btnimpresoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnimpresoraActionPerformed
+        frmImpresoras newframe=new frmImpresoras();
+            newframe.setVisible(true);
+            this.dispose();;
+    }//GEN-LAST:event_btnimpresoraActionPerformed
+
    
 
     public static void main(String args[]) {
@@ -491,6 +524,7 @@ public class frmImpresiones extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btneliminar;
+    private javax.swing.JButton btnimpresora;
     private javax.swing.JButton btninsertar;
     private javax.swing.JButton btnlimpiar;
     private javax.swing.JButton btnmodificar;
