@@ -20,7 +20,7 @@ public class controllerImpresiones {
     public void insertar(Impresiones imp) {
 
         try {
-            String sql = "INTO t_registro (cedula, apellidos, nombres, id_impresora, id_tipoImp, numero_hojas, timestamp, descripcion) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+            String sql = "INSERT INTO t_registro (cedula, apellidos, nombres, id_impresora, id_tipoImp, numero_hojas, timestamp, descripcion) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
             acceso = con.conectar();
             System.out.println("conexxion: " + acceso);
             ps = acceso.prepareStatement(sql);

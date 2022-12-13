@@ -40,6 +40,11 @@ public class frmRegistro extends javax.swing.JFrame {
         btninsertar = new javax.swing.JButton();
         btnlimpiar = new javax.swing.JButton();
         btnregresar = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jmiImpresoras = new javax.swing.JMenuItem();
+        jmiImpresiones = new javax.swing.JMenuItem();
+        jmiSalir = new javax.swing.JMenuItem();
 
         jLabel1.setText("jLabel1");
 
@@ -146,6 +151,36 @@ public class frmRegistro extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jMenu1.setText("Registro");
+
+        jmiImpresoras.setText("Impresoras");
+        jmiImpresoras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiImpresorasActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmiImpresoras);
+
+        jmiImpresiones.setText("Impresiones");
+        jmiImpresiones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiImpresionesActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmiImpresiones);
+
+        jmiSalir.setText("Salir");
+        jmiSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiSalirActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmiSalir);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,7 +215,7 @@ public class frmRegistro extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 13, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         pack();
@@ -222,8 +257,26 @@ public class frmRegistro extends javax.swing.JFrame {
     private void btnregresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregresarActionPerformed
           frmImpresoras newframe=new frmImpresoras();
             newframe.setVisible(true);
-            this.dispose();;
+            this.dispose();
     }//GEN-LAST:event_btnregresarActionPerformed
+
+    private void jmiImpresorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiImpresorasActionPerformed
+        // TODO add your handling code here:
+        new frmImpresoras().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jmiImpresorasActionPerformed
+
+    private void jmiImpresionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiImpresionesActionPerformed
+        // TODO add your handling code here:
+        new frmImpresiones().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jmiImpresionesActionPerformed
+
+    private void jmiSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSalirActionPerformed
+        // TODO add your handling code here:
+         JOptionPane.showMessageDialog(null, "Gracias por usar la aplicación");
+        this.dispose();
+    }//GEN-LAST:event_jmiSalirActionPerformed
 
    
 
@@ -271,8 +324,13 @@ public class frmRegistro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JMenuItem jmiImpresiones;
+    private javax.swing.JMenuItem jmiImpresoras;
+    private javax.swing.JMenuItem jmiSalir;
     private javax.swing.JTextField txtarea;
     private javax.swing.JTextField txtmarca;
     private javax.swing.JTextField txttipoimpresion;
